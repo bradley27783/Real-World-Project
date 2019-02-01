@@ -31,7 +31,7 @@ def scrape(timetable):
     blacklistCounter = 0
     f = open("html.txt", "w")
     for l in lines:
-        if counter >= 202 and l != '': #and NOT USELESS LINES
+        if counter >= 202 and l.strip() != '': #and NOT USELESS LINES
             if "]" in l:
                 f.write(l)
                 break
