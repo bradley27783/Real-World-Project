@@ -4,7 +4,8 @@
 # CHECK DISCORD
 import requests
 from bs4 import BeautifulSoup
-
+from requests_ntlm import HttpNtlmAuth
+from getpass import getpass
 timetable = "https://webapp.coventry.ac.uk/Timetable-main/Show/7658503?f=&t=&d=20170926&u=EEC/Timetable&k=aB7yw-TFnWGgPYLHzXDz8woGNts.X#view=agendaWeek"
 #timetable = "https://webapp.coventry.ac.uk/Timetable-main/"
     
@@ -42,10 +43,10 @@ def scrape(timetable):
                 continue
             f.write(l)
         counter = counter+1
-
+    f.close()
     #html.txt now has in key : value pair - the data for each event in the timetable
     #now: https://stackoverflow.com/questions/24027589/how-to-convert-raw-javascript-object-to-python-dictionary/26900181#26900181
-    f.close()
+    
     
     
 
@@ -56,15 +57,24 @@ def scrape(timetable):
 def getTimetable(url):
     
 
-    payload = {'some': 'data'}
+    pauser = raw_input('Username:           >')
+    pw =   getpass('Password (hidden):  >')
 
-    r = requests.post(url, json=payload)
-    r = requests.put(url, data = {'key':'value'})
+    print("Getting timetable source...")
+
+    auth = HttpNtlmAuth('\\' + user, pw)
+    r = requests.get("https://webapp.coventry.ac.uk/Timetable-main/Timetable/Current/", auth=auth)
     
+    if r.status_code == 200:
+        print("Successfully loaded timetable:\n" + r.text)
+    elif r.status_code == 401:
+        print("Authentication failed.")
+    else:
+        print("Unknown outcome. Response status: " + r.status_code)
 
 
 
 #
 #
-scrape(timetable)
-#getTimetable(timetable)
+#scrape(timetable)
+getTimetable(timetable)
