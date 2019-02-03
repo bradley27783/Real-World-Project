@@ -14,14 +14,14 @@ header{
 }
 
 .header-container {
-  background-color: white;
+  background-color: red;
   display: grid;
   grid-template-columns: 1fr 8fr 4fr;
   grid-column-gap: 5px;
 }
 
 .header-container > div {
-  background-color: pink;
+  background-color: white;
 }
 
 
