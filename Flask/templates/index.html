@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Virtual Campus</title>
+
+    <link rel="stylesheet" type="text/css" href={{url_for('static',filename='style.css')}}>
+  </head>
+  <body>
+    <header>
+      <div class='header-container'>
+        <div id='menu'>
+          <h2 class='center'>
+            <button>Menu</button>
+          </h2>
+        </div>
+        <div id ='title'>
+          <h1>Title</h1>
+        </div>
+        <div id='searchbar'>
+          <h2>Searchbar</h2>
+        </div>
+      </div>
+    </header>
+    <div>
+      <div class='container'>
+        <div>
+          {% for post in posts %}
+            <h1> {{ post.title }} </h1>
+            <p> {{ post.author }} on {{ post.date_posted }} </p>
+            <p> {{ post.content }} </p>
+          {% endfor %}
+        </div>
+        <div>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>
