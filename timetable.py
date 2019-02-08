@@ -1,11 +1,3 @@
-
-#
-#
-#
-# IN THE DATE IN THE TIMETABLE -> MONTH IS INDEXED (JAN = 0, FEB = 1)
-# start : new Date(blah blah blah) needs to become -> start : [blah blah blah]
-#
-#
 import requests
 
 import json
@@ -70,23 +62,19 @@ def format(timetable):
     jsFile = open("html.txt", "r")
     jsObj = jsFile.read()
     jsFile.close()
-    pyObj = demjson.decode(jsObj)
+    timetableDict = demjson.decode(jsObj)
 
 
-    
-    timetableDict = pyObj
+    monthView = formatMonth(eventCounter, timetableDict)
 
 
-    print(type(timetableDict))
-    print(timetableDict["event0"]["start"][0])
+    f = open("html.txt", "w")
+    f.write(str(monthView))
+    f.close()
 
 
-    
-    #NOW ONLY WRITE INTO TXT FILE, THE DATES UP TO a month
-    #timetableDict[instance]["start"][?]
-    #When ? is 0 = year, 1 = month - 1, 2 = day, 3 + 4 is time so dw
-    #del timetableDict[instance]
 
+def formatMonth(eventCounter, timetableDict):
     currentDate = datetime.date.today()
 
     
@@ -111,13 +99,7 @@ def format(timetable):
         del timetableDict[instance]
 
 
-    
-    f = open("html.txt", "w")
-    f.write(str(timetableDict))
-    f.close()
-
-
-    
+    return timetableDict
     
 
     
@@ -143,4 +125,4 @@ def getTimetable(url):
 
 
 getTimetable(timetable)
-W8 = input()
+W8 = input("DONE")
