@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   </head>
-  <body>
+  <body style="height: 100%; width:100%">
     <header>
       
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -29,7 +29,7 @@
                   
                   
                   <li class="navbar-item">
-                      <a href="#" class="nav-link">Logout</a>
+                      <a href="/" class="nav-link">Logout</a>
                   </li>
                   
                   <li class="navbar-item">
@@ -53,12 +53,14 @@
     <div>
       <div class='container-fluid'>
           <div class="row">
-            <div class="col-lg-8 col-md-8" style="background-color:white; height:91vh;">
+              <!-- MAP SECTION -->
+            <div class="col-lg-8" style="background-color:white; height:92vh">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9735.896300686763!2d-1.5124762633612203!3d52.40714606621667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48774b08199e7615%3A0xd6574396474a635e!2sCoventry+CV1!5e0!3m2!1sen!2suk!4v1549667191890" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
-            <div class="col-lg-4 col-md-4" style="overflow: scroll">
+            <!-- SIDE BAR -->
+            <div class="col-lg-4" style="overflow: scroll; max-height:92vh">
                 <div class="container">
-                    <div style="height:43vh; overflow: scroll; margin-top: 2vh;">
+                    <div style="max-height:42vh; overflow: scroll; margin-top: 3vh;">
                       {% for post in posts %}
                         <h2> {{ post.title }} </h2>
                         <p> {{ post.author }} on {{ post.date_posted }} </p>
@@ -68,14 +70,14 @@
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique suscipit dolore error eos velit architecto fugiat obcaecati illo rerum saepe aperiam sed assumenda qui nihil necessitatibus praesentium sapiente nostrum ratione.</p>
                     </div>
                     
-                    <div style="height:43vh; overflow: scroll; margin-top: 2vh;">
+                    <div style="max-height:42vh; overflow: scroll; margin-top: 3vh;">
                       <h2>Events</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore qui a quibusdam modi numquam aliquam assumenda possimus necessitatibus ab vel nisi perspiciatis autem distinctio ex eos ratione maxime perferendis dolore!</p>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum dolorem reiciendis veritatis repudiandae laborum incidunt saepe aperiam cum deserunt accusantium error dolorum nostrum itaque. Incidunt recusandae quo ipsa ratione placeat.</p>
 
                     </div>
                     
-                    <div style="height:43vh; overflow: scroll; margin-top: 2vh;">
+                    <div style="max-height:42vh; overflow: scroll; margin-top: 3vh;">
                       <h2>Something Else</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore qui a quibusdam modi numquam aliquam assumenda possimus necessitatibus ab vel nisi perspiciatis autem distinctio ex eos ratione maxime perferendis dolore!</p>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum dolorem reiciendis veritatis repudiandae laborum incidunt saepe aperiam cum deserunt accusantium error dolorum nostrum itaque. Incidunt recusandae quo ipsa ratione placeat.</p>

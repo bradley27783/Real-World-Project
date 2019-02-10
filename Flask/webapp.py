@@ -19,13 +19,14 @@ posts = [
 
 
 
-@app.route("/" , methods=['GET','POST'])
+
 @app.route("/home",methods=['GET','POST'])
 def home():
     '''Home page for website'''
     search = Searchbar()
     return render_template('index.html',posts=posts,search=search)
 
+@app.route("/" , methods=['GET','POST'])
 @app.route('/login', methods=['GET','POST'])
 def login():
     '''Login page for website'''
