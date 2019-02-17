@@ -1,0 +1,14 @@
+  
+  - Create a way of navigating from the person's current location (new positioned marker).
+  - Test the code on either (Ongoing): 
+      http://codepen.io/pen/
+      http://jsfiddle.net/
+      http://jsbin.com/
+      http://www.sitepoint.com/7-code-playgrounds/
+   - Implement the code with the rest of a the group's.
+   - Looking into generating a personal street view of university buildings. (Extension)
+   - Creating possible navigations from room to room. (Extension)
+   - Making the geolocation feature more accurate (more frequent updates) (Extension.
+   - Gathering students' location coordinates.
+   - Other website useful features (Extensions).
+   - ....
