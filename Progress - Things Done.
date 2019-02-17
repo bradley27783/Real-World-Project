@@ -1,0 +1,12 @@
+- Created a personal stack in github.
+- Push the files to github from codio.
+- API that retrieves a person's location (geolocation).
+- Generated API keys for all four APIs.
+- Created a way of going from building to building (Testing).
+- Have the map revolved around Coventry University.
+- Tested APIs using google address requests (HTTPS).
+- Obtained postcodes for each university building.
+    https://www.coventry.ac.uk/the-university/about-coventry-university/our-buildings/buildings/
+- Research on Javascript, HTML, CSS (Ongoing).
+    https://www.w3schools.com/js/
+- ...
