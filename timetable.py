@@ -1,5 +1,4 @@
 import requests
-
 import json
 import demjson
 import datetime
@@ -22,21 +21,22 @@ def format(timetable):
     counter = 0
     eventCounter = 0
     numOfLines = 0
+    startReading = False
     html = BeautifulSoup(timetable.content, 'html.parser')
     f = open("html.txt", "w")
     f.write(str(html))
     f.close()
     f = open("html.txt", "r")
     lines = f.readlines()
-    f.close()    
+    f.close()
     blaclist = ['ourEventId:', 'color:', 'mainColor', 'eventType:', 'sourceid:']
     blacklistCounter = 0
     f = open("html.txt", "w")
     #something to make it a dic opening here
     f.write("{")
 
-    for l in lines:     
-        if counter >= 388 and l.strip() != '':
+    for l in lines:
+        if startReading == True and l.strip() != '':
             if ": new Date(" in l: #formats the date entry to be able to convert into python
                 l = formatDate(l)
                 f.write(l)
@@ -54,6 +54,8 @@ def format(timetable):
                 continue
             f.write(l)
         counter = counter+1
+        if "events: [" in l:
+            startReading = True
     #close the dic here
     f.write("}")
     f.close()
