@@ -1,102 +1,26 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Virtual Campus</title>
+{% extends "layout.html" %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-      
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% block main %}
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9735.896300686763!2d-1.5124762633612203!3d52.40714606621667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48774b08199e7615%3A0xd6574396474a635e!2sCoventry+CV1!5e0!3m2!1sen!2suk!4v1549667191890" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+{% endblock main %}
 
-  </head>
-  <body style="height: 100%; width:100%">
-    <header>
-      
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-          <a href="#" class="navbar-brand"> Virtual Campus</a>
-          
-          
-          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarmenu">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          
-          <div class="collapse navbar-collapse" id="navbarmenu">
-          
-              <ul class="navbar-nav ml-auto">
-                  
-                  
-                  <li class="navbar-item">
-                      <a href="/" class="nav-link">Logout</a>
-                  </li>
-                  
-                  <li class="navbar-item">
-                      <a href="#" class="nav-link">Account</a>
-                  </li>
-                  
-                  <li class="navbar-item">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
-                      <div class="input-group-append">
-                        <a href="#" class="input-group-text material-icons" id="basic-addon2">search</a>
-                      </div>
-                    </div>
-                  </li>
-              </ul>
-          </div>
-      </nav>
-        
-   
-        
-    <div>
-      <div class='container-fluid'>
-          <div class="row">
-              <!-- MAP SECTION -->
-            <div class="col-lg-8" style="background-color:white; height:92vh">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9735.896300686763!2d-1.5124762633612203!3d52.40714606621667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48774b08199e7615%3A0xd6574396474a635e!2sCoventry+CV1!5e0!3m2!1sen!2suk!4v1549667191890" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
-            <!-- SIDE BAR -->
-            <div class="col-lg-4" style="overflow: scroll; max-height:92vh">
-                <div class="container">
-                    <div style="max-height:42vh; overflow: scroll; margin-top: 3vh;">
-                      {% for post in posts %}
-                        <h2> {{ post.title }} </h2>
-                        <p> {{ post.author }} on {{ post.date_posted }} </p>
-                        <p> {{ post.content }} </p>
-                      {% endfor %}
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam nobis enim nam aliquid architecto totam accusamus ullam pariatur laboriosam in vero voluptatibus ab officiis cumque quos quis iure culpa nostrum!</p>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique suscipit dolore error eos velit architecto fugiat obcaecati illo rerum saepe aperiam sed assumenda qui nihil necessitatibus praesentium sapiente nostrum ratione.</p>
-                    </div>
-                    
-                    <div style="max-height:42vh; overflow: scroll; margin-top: 3vh;">
-                      <h2>Events</h2>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore qui a quibusdam modi numquam aliquam assumenda possimus necessitatibus ab vel nisi perspiciatis autem distinctio ex eos ratione maxime perferendis dolore!</p>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum dolorem reiciendis veritatis repudiandae laborum incidunt saepe aperiam cum deserunt accusantium error dolorum nostrum itaque. Incidunt recusandae quo ipsa ratione placeat.</p>
 
-                    </div>
-                    
-                    <div style="max-height:42vh; overflow: scroll; margin-top: 3vh;">
-                      <h2>Something Else</h2>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore qui a quibusdam modi numquam aliquam assumenda possimus necessitatibus ab vel nisi perspiciatis autem distinctio ex eos ratione maxime perferendis dolore!</p>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum dolorem reiciendis veritatis repudiandae laborum incidunt saepe aperiam cum deserunt accusantium error dolorum nostrum itaque. Incidunt recusandae quo ipsa ratione placeat.</p>
 
-                    </div>
-                </div>
-                
-              </div>
-              
-          </div>
-      </div>
+{% block sidebar %}
+    {% if  session['username']['Course'] %}
+        {{ session['username']['Course'] }}
+    {% endif %}
+
+    <div style="margin-top: 3vh">
+        {% for post in posts %}
+            <h3> {{ post.title }} </h3>
+            <p> {{ post.author }} on {{ post.date_posted }} </p>
+            <p> {{ post.content }} </p>
+        {% endfor %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam nobis enim nam aliquid architecto totam accusamus ullam pariatur laboriosam in vero voluptatibus ab officiis cumque quos quis iure culpa nostrum!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique suscipit dolore error eos velit architecto fugiat obcaecati illo rerum saepe aperiam sed assumenda qui nihil necessitatibus praesentium sapiente nostrum ratione.</p>
     </div>
-
-
-        
-  <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-  </body>
-</html>
+    <hr>
+    
+{% endblock sidebar %}

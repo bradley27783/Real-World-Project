@@ -11,3 +11,13 @@ flask run --host=0.0.0.0
 export FLASK_APP=webapp.py
 export FLASK_DEBUG=1
 flask run --host=0.0.0.0
+
+
+--TEMP DATABASE MADE--
+Current Accounts are:
+Admin:
+    - Username - admin
+    - Password - password
+Bradley:
+    - Username - harri361
+    - Password - password
