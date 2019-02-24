@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 from forms import LoginForm, Searchbar
 from timetable import valid_Account
 from users import User
-from flask_socketio import SocketIO, Namespace, emit
+from flask_socketio import SocketIO, Namespace, emit, join_room, leave_room, send
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'oFmEakhRZdEjLpd0XTqg' #Secret key to encrypt session/cookie data should use Python os
@@ -91,6 +91,9 @@ def social():
 def group(d_group):
     '''group page for website'''
     print("\n\n" + d_group + "\n\n")
+    session['group'] = d_group
+    print(session)
+    print(request.path)
     if 'username' in session:
         search = Searchbar()
         return render_template('group.html',posts=posts,search=search, group=d_group)
@@ -109,11 +112,28 @@ def navigation():
     else:
         return redirect(url_for('login'))
 
+    
+@socketio.on("message")
+def handle_connection(msg):
+    print('Message: ' + msg)
+    user = session['username']['Username']
+    print(user)
+    send({'msg':msg,'user':user}, broadcast=True)
+
+
+    
+groups = {"Computer Science":{'harri361': ''}}
 @socketio.on("my event")
 def handle_connection(conn):
     print(conn['data'] + "  ")
+    print(request.sid)
+    print(groups['Computer Science'])
 
-        
+    username = session['username']['Username']
+    room = session['group']
+    print(username)
+    print(room)
+    send(username + 'has entered the room.', room=room)
         
 with app.test_request_context():
     print(url_for('home'))
