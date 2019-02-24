@@ -2,12 +2,13 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 from forms import LoginForm, Searchbar
 from timetable import valid_Account
 from users import User
+from flask_socketio import SocketIO, Namespace, emit
 
 app = Flask(__name__)
-
 app.config['SECRET_KEY'] = 'oFmEakhRZdEjLpd0XTqg' #Secret key to encrypt session/cookie data should use Python os
                                                   #to generate a random 16 character key.
-
+socketio = SocketIO(app)
+    
 
 #Temp data for me to experiment with flask
 posts = [
@@ -65,16 +66,15 @@ def home():
         return redirect(url_for('login')) #Redirect to display login page if user isn't logged in
 
 
-@app.route("/calendar",methods=['GET','POST'])
-def calendar():
+@app.route("/event/<event>",methods=['GET','POST'])
+def event(event):
     '''Calender page for website'''
     if 'username' in session:  #Checks if the user has a session if not then they can't access the homepage
         search = Searchbar() #Creates the Searchbar Object containing the form
-        return render_template('calendar.html',posts=posts,search=search) #Loads calender.html - which is the calendar page
+        return render_template('events.html',posts=posts,search=search,event=event) #Loads calender.html - which is the calendar page
     
     else:
         return redirect(url_for('login')) #Redirect to display login page if user isn't logged in
-    
     
 @app.route("/social",methods=['GET','POST'])
 def social():
@@ -87,12 +87,13 @@ def social():
         return redirect(url_for('login')) #Redirect to display login page if user isn't logged in
 
     
-@app.route("/group",methods=['GET','POST'])
-def group():
+@app.route("/group/<d_group>",methods=['GET','POST'])
+def group(d_group):
     '''group page for website'''
+    print("\n\n" + d_group + "\n\n")
     if 'username' in session:
         search = Searchbar()
-        return render_template('group.html',posts=posts,search=search)
+        return render_template('group.html',posts=posts,search=search, group=d_group)
     
     else:
         return redirect(url_for('login'))
@@ -107,10 +108,21 @@ def navigation():
     
     else:
         return redirect(url_for('login'))
-    
+
+@socketio.on("my event")
+def handle_connection(conn):
+    print(conn['data'] + "  ")
+
+        
+        
+with app.test_request_context():
+    print(url_for('home'))
+    #print(url_for('group'))
+    #print(url_for('group', next='/'))
+    #print(url_for('dynamic_Group', a='Computer Science'))
     
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app, host='0.0.0.0', debug=True)
     
     
 
