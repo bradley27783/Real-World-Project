@@ -1,0 +1,192 @@
+{% extends "layout.html" %}
+
+{% block style %}
+<style>
+    
+    #users div div {
+        height: 17vh;
+        overflow: hidden;
+        background-color: white;
+        margin: 10px 10px;
+        border-radius: 25%;
+        text-align: center;
+        box-shadow: 0 0 10px 1px;
+        -webkit-transition: box-shadow 2s; /* For Safari 3.1 to 6.0 */
+        transition: box-shadow 2s;
+    }
+    
+    #users div div:hover{
+        box-shadow: 0 5px 15px 5px;
+        cursor: pointer;
+    }
+    
+    #users div div img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        border-radius: 50%;
+        margin-top: 20px;
+    }
+    
+    #users div div h4 {
+        margin-top: 10px;
+        padding-bottom: 10px;
+    }
+    
+    @media screen and (max-width: 1700px) and (min-width: 1380px){
+        #users div div h4 {
+            font-size: 20px;
+        }
+        #users div div {
+            height: 15vh;
+        }
+    }
+    
+    @media screen and (max-width: 1379px) and (min-width: 992px){
+        #users div div h4 {
+            font-size: 15px;
+        }
+        #users div div {
+            height: 12vh;
+        }
+    }
+    
+    @media screen and (max-width: 580px) and (min-width: 391px){
+        #users div div h4 {
+            font-size: 10px;
+        }
+        #users div div {
+            height: 12vh;
+        }
+        #users div div img {
+            height: 40px;
+            width: 40px;
+        }
+    }
+    @media screen and (max-width: 390px) and (min-width: 0px){
+        #users div div h4 {
+            font-size: 8px;
+        }
+        #users div div {
+            height: 12vh;
+        }
+        #users div div img {
+            margin-top: 8px;
+            height: 30px;
+            width: 30px;
+        }
+    }
+    
+</style>
+{% endblock style %}
+
+
+
+{% block main %}
+    <img src="https://previews.123rf.com/images/ckybe/ckybe1806/ckybe180600009/103153264-messenger-short-message-service-bubbles-text-chat-sms-boxes-empty-messaging-bubles-template-.jpg" width="100%" height="100%">
+{% endblock main %}
+
+
+
+{% block sidebar %}
+<div class="container" style="margin-top: 3vh" id='users'>
+    <div class="row">
+        <div class="col">
+            <img src='https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png'>
+            <h4>Bradley Harrison</h4>
+        </div>
+        <div class="col">
+            <img src='https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png'>
+            <h4>Clarke</h4>
+        </div>
+        <div class="col">
+            <img src='https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png'>
+            <h4>Aslam</h4>
+        </div>
+        <div class="col">
+            <img src='https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png'>
+            <h4>Nicolas</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <img src='https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png'>
+            <h4>Matt Fretwell</h4>
+        </div>
+        <div class="col">
+            <img src='https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png'>
+            <h4>Joseph McGeever</h4>
+        </div>
+        <div class="col">
+            <img src='https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png'>
+            <h4>Bradley Harrison</h4>
+        </div>
+        <div class="col">
+            <img src='https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png'>
+            <h4>Clarke</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <img src='https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png'>
+            <h4>Aslam</h4>
+        </div>
+        <div class="col">
+            <img src='https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png'>
+            <h4>Nicolas</h4>
+        </div>
+        <div class="col">
+            <img src='https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png'>
+            <h4>Matt Fretwell</h4>
+        </div>
+        <div class="col">
+            <img src='https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png'>
+            <h4>Joseph McGeever</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+    
+{% endblock sidebar %}
