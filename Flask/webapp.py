@@ -20,20 +20,6 @@ posts = [
 ]
 
 
-
-
-@app.route("/home",methods=['GET','POST'])
-def home():
-    '''Home page for website'''
-    if 'username' in session:  #Checks if the user has a session if not then they can't access the homepage
-        search = Searchbar() #Creates the Searchbar Object containing the form
-        return render_template('index.html',posts=posts,search=search) #Loads index.html - which is the homepage
-    
-    else:
-        return redirect(url_for('login')) #Redirect to display login page if user isn't logged in
-
-
-
 @app.route("/" , methods=['GET','POST'])
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -68,6 +54,61 @@ def logout():
 
 
 
+@app.route("/home",methods=['GET','POST'])
+def home():
+    '''Home page for website'''
+    if 'username' in session:  #Checks if the user has a session if not then they can't access the homepage
+        search = Searchbar() #Creates the Searchbar Object containing the form
+        return render_template('index.html',posts=posts,search=search) #Loads index.html - which is the homepage
+    
+    else:
+        return redirect(url_for('login')) #Redirect to display login page if user isn't logged in
+
+
+@app.route("/calendar",methods=['GET','POST'])
+def calendar():
+    '''Calender page for website'''
+    if 'username' in session:  #Checks if the user has a session if not then they can't access the homepage
+        search = Searchbar() #Creates the Searchbar Object containing the form
+        return render_template('calendar.html',posts=posts,search=search) #Loads calender.html - which is the calendar page
+    
+    else:
+        return redirect(url_for('login')) #Redirect to display login page if user isn't logged in
+    
+    
+@app.route("/social",methods=['GET','POST'])
+def social():
+    '''Social page for website'''
+    if 'username' in session:  #Checks if the user has a session if not then they can't access the homepage
+        search = Searchbar() #Creates the Searchbar Object containing the form
+        return render_template('social.html',posts=posts,search=search) #Loads social.html - which is the social page
+    
+    else:
+        return redirect(url_for('login')) #Redirect to display login page if user isn't logged in
+
+    
+@app.route("/group",methods=['GET','POST'])
+def group():
+    '''group page for website'''
+    if 'username' in session:
+        search = Searchbar()
+        return render_template('group.html',posts=posts,search=search)
+    
+    else:
+        return redirect(url_for('login'))
+    
+    
+@app.route("/navigation",methods=['GET','POST'])
+def navigation():
+    '''Navigation page for website'''
+    if 'username' in session:
+        search = Searchbar()
+        return render_template('navigation.html',posts=posts,search=search)
+    
+    else:
+        return redirect(url_for('login'))
+    
+    
 if __name__ == '__main__':
     app.run(debug=True)
     
