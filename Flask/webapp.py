@@ -9,6 +9,7 @@ app.config['SECRET_KEY'] = 'oFmEakhRZdEjLpd0XTqg' #Secret key to encrypt session
                                                   #to generate a random 16 character key.
 
 
+
 #Temp data for me to experiment with flask
 posts = [
     {
@@ -59,8 +60,12 @@ def home():
     '''Home page for website'''
     if 'username' in session:  #Checks if the user has a session if not then they can't access the homepage
         search = Searchbar() #Creates the Searchbar Object containing the form
+        query = submit(search)
+        if(query!= 'None'):
+            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
+            return render_template('group.html',posts=posts,search=search)
+            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
         return render_template('index.html',posts=posts,search=search) #Loads index.html - which is the homepage
-    
     else:
         return redirect(url_for('login')) #Redirect to display login page if user isn't logged in
 
@@ -70,6 +75,11 @@ def calendar():
     '''Calender page for website'''
     if 'username' in session:  #Checks if the user has a session if not then they can't access the homepage
         search = Searchbar() #Creates the Searchbar Object containing the form
+        query = submit(search)
+        if(query!= 'None'):
+            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
+            return render_template('group.html',posts=posts,search=search)
+            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
         return render_template('calendar.html',posts=posts,search=search) #Loads calender.html - which is the calendar page
     
     else:
@@ -81,6 +91,11 @@ def social():
     '''Social page for website'''
     if 'username' in session:  #Checks if the user has a session if not then they can't access the homepage
         search = Searchbar() #Creates the Searchbar Object containing the form
+        query = submit(search)
+        if(query!= 'None'):
+            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
+            return render_template('group.html',posts=posts,search=search)
+            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
         return render_template('social.html',posts=posts,search=search) #Loads social.html - which is the social page
     
     else:
@@ -92,6 +107,11 @@ def group():
     '''group page for website'''
     if 'username' in session:
         search = Searchbar()
+        query = submit(search)
+        if(query!= 'None'):
+            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
+            return render_template('group.html',posts=posts,search=search)
+            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
         return render_template('group.html',posts=posts,search=search)
     
     else:
@@ -103,10 +123,49 @@ def navigation():
     '''Navigation page for website'''
     if 'username' in session:
         search = Searchbar()
+        query = submit(search)
+        if(query!= 'None'):
+            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
+            return render_template('group.html',posts=posts,search=search)
+            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
         return render_template('navigation.html',posts=posts,search=search)
     
     else:
         return redirect(url_for('login'))
+    
+    
+    
+
+def submit(search):
+    '''Needs to return the correct search which will then be the x in redirect(url_for('bla bla bla))'''
+    result = search.searchbar.data
+    result = str(result)
+    if(any(char.isdigit() for char in result)): #if has a number in -> room is being searched
+        print("A Number is in result -> a room")
+        return result
+    else:
+        print("No number is in result -> a building")
+        return result
+
+    
+    
+@app.route('/search', methods=['GET','POST'])
+def search():
+    '''Results of a search are shown here'''
+    if 'username' in session:
+        search = Searchbar()
+        query = submit(search)
+        if(query!= 'None'):
+            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
+            return render_template('group.html',posts=posts,search=search)
+            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
+        return render_template('search.html',posts=posts,search=search)
+    
+    else:
+        return redirect(url_for('login'))
+    
+    
+    
     
     
 if __name__ == '__main__':
