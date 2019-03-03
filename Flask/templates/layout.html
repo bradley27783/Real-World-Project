@@ -45,12 +45,14 @@
                   </li>
                   
                   <li class="navbar-item">
-                    <div class="input-group">
-                      {{ search.searchbar }}<!--<input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">-->
+                        <form method='POST' action=''>
+                            <div class="input-group">
+                             {{ search.searchbar }}<!--<input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">-->
                       <div class="input-group-append">
-                        {{ search.submit }}<!--<a href="#" class="input-group-text material-icons" id="basic-addon2">search</a>-->
+                        {{ search.submit }}<!--<a href="submit" class="input-group-text material-icons" id="basic-addon2">search</a>-->
                       </div>
-                    </div>
+                                </div>
+                        </form>
                   </li>
               </ul>
           </div>

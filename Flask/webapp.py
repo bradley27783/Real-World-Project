@@ -9,7 +9,6 @@ app.config['SECRET_KEY'] = 'oFmEakhRZdEjLpd0XTqg' #Secret key to encrypt session
                                                   #to generate a random 16 character key.
 
 
-
 #Temp data for me to experiment with flask
 posts = [
     {
@@ -19,6 +18,7 @@ posts = [
         'date_posted':'12/12/2018'
     }
 ]
+
 
 
 @app.route("/" , methods=['GET','POST'])
@@ -59,13 +59,11 @@ def logout():
 def home():
     '''Home page for website'''
     if 'username' in session:  #Checks if the user has a session if not then they can't access the homepage
-        search = Searchbar() #Creates the Searchbar Object containing the form
-        query = submit(search)
+        searchB = Searchbar() #Creates the Searchbar Object containing the form
+        query = submit(searchB)
         if(query!= 'None'):
-            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
-            return render_template('group.html',posts=posts,search=search)
-            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
-        return render_template('index.html',posts=posts,search=search) #Loads index.html - which is the homepage
+            return searchWord()
+        return render_template('index.html',posts=posts,search=searchB) #Loads index.html - which is the homepage
     else:
         return redirect(url_for('login')) #Redirect to display login page if user isn't logged in
 
@@ -74,13 +72,11 @@ def home():
 def calendar():
     '''Calender page for website'''
     if 'username' in session:  #Checks if the user has a session if not then they can't access the homepage
-        search = Searchbar() #Creates the Searchbar Object containing the form
-        query = submit(search)
+        searchB = Searchbar() #Creates the Searchbar Object containing the form
+        query = submit(searchB)
         if(query!= 'None'):
-            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
-            return render_template('group.html',posts=posts,search=search)
-            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
-        return render_template('calendar.html',posts=posts,search=search) #Loads calender.html - which is the calendar page
+            return searchWord()
+        return render_template('calendar.html',posts=posts,search=searchB) #Loads calender.html - which is the calendar page
     
     else:
         return redirect(url_for('login')) #Redirect to display login page if user isn't logged in
@@ -90,13 +86,11 @@ def calendar():
 def social():
     '''Social page for website'''
     if 'username' in session:  #Checks if the user has a session if not then they can't access the homepage
-        search = Searchbar() #Creates the Searchbar Object containing the form
-        query = submit(search)
+        searchB = Searchbar() #Creates the Searchbar Object containing the form
+        query = submit(searchB)
         if(query!= 'None'):
-            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
-            return render_template('group.html',posts=posts,search=search)
-            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
-        return render_template('social.html',posts=posts,search=search) #Loads social.html - which is the social page
+            return searchWord()
+        return render_template('social.html',posts=posts,search=searchB) #Loads social.html - which is the social page
     
     else:
         return redirect(url_for('login')) #Redirect to display login page if user isn't logged in
@@ -106,13 +100,11 @@ def social():
 def group():
     '''group page for website'''
     if 'username' in session:
-        search = Searchbar()
-        query = submit(search)
+        searchB = Searchbar()
+        query = submit(searchB)
         if(query!= 'None'):
-            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
-            return render_template('group.html',posts=posts,search=search)
-            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
-        return render_template('group.html',posts=posts,search=search)
+            return searchWord()
+        return render_template('group.html',posts=posts,search=searchB) #Loads social.html - which is the social page
     
     else:
         return redirect(url_for('login'))
@@ -122,17 +114,14 @@ def group():
 def navigation():
     '''Navigation page for website'''
     if 'username' in session:
-        search = Searchbar()
-        query = submit(search)
+        searchB = Searchbar()
+        query = submit(searchB)
         if(query!= 'None'):
-            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
-            return render_template('group.html',posts=posts,search=search)
-            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
-        return render_template('navigation.html',posts=posts,search=search)
+            return searchWord()
+        return render_template('navigation.html',posts=posts,search=searchB)
     
     else:
         return redirect(url_for('login'))
-    
     
     
 
@@ -148,19 +137,37 @@ def submit(search):
         return result
 
     
-    
 @app.route('/search', methods=['GET','POST'])
-def search():
+def searchWord():
     '''Results of a search are shown here'''
     if 'username' in session:
-        search = Searchbar()
-        query = submit(search)
+        searchB = Searchbar()
+        query = submit(searchB)
         if(query!= 'None'):
-            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
-            return render_template('group.html',posts=posts,search=search)
-            #NEEDS TO BE A RENDER TEMPLATE SEARCH THING
-        return render_template('search.html',posts=posts,search=search)
-    
+            
+            #QUEREY SENT HERE SHOULD BE ALREADY PREPARED INTO OUR SYSTEMS ACCEPTIBLE STRING
+            
+            #QUERY NOW HAS TO REPLACE EVRRY " " CHAR WITH "-"
+            
+            query2 = query.replace(' ', '-')
+            value = "/static/images/" + query2 + ".png"
+            
+            
+            #SHOULD QUERY MONGODB to get building desc here
+            #gonna use text file temporarily
+
+            readNextLine = False
+            f = open("buildings.txt", "r")
+            lines = f.readlines()
+            textValue = "Gotta save the building description in the db - or tbh, probably wont be that bad here. Only 24, lets be honest"
+            for l in lines:
+                if readNextLine == True:
+                    textValue = l
+                    break
+                if query in l:
+                    readNextLine = True
+            f.close()
+            return render_template('search.html',value=value,value2=query,value3=textValue,posts=posts,search=searchB) #SENDS THE VARIABLE QUERY AS VALUE
     else:
         return redirect(url_for('login'))
     
