@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 from forms import LoginForm, Searchbar
 from timetable import valid_Account
 from users import User
+import difflib
 
 app = Flask(__name__)
 
@@ -133,7 +134,16 @@ def submit(search):
         print("A Number is in result -> a room")
         return result
     else:
-        print("No number is in result -> a building")
+        print("No number is in result -> a building " + result)
+        words = ["Alan Berry","Alma","Armstrong","Bugatti","Charles Ward","Engineering & Computing Building","Ellen Terry","George Eliot","Graham Sutherland","Frederick Lanchester Library","Jaguar","The Hub","Maurice Foss","James Starley","Multi-Storey Car Park","Priory Building","Richard Crossman","Alison Gingell Building","Sir John Laing","Sir William Lyons","Student Centre","Whitefriars","William Morris","Sport Centre"]
+        results = difflib.get_close_matches(result, words)
+        if(results!=[]):
+            correctedResult = results[0]
+            if(results!=correctedResult):
+                print("Did you mean: ")
+            return correctedResult
+        if(result not in words):
+            return "BadSearch"
         return result
 
     
@@ -143,7 +153,12 @@ def searchWord():
     if 'username' in session:
         searchB = Searchbar()
         query = submit(searchB)
-        if(query!= 'None'):
+        if(query=="BadSearch"):
+            value = "/static/images/campus_map.png"
+            query = "No building found for your search"
+            textValue = "Unfortunately, no buildings were found for your search"
+            return render_template('search.html',value=value,value2=query,value3=textValue,posts=posts,search=searchB)
+        elif(query!= 'None'):
             
             #QUEREY SENT HERE SHOULD BE ALREADY PREPARED INTO OUR SYSTEMS ACCEPTIBLE STRING
             
