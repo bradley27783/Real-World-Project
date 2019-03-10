@@ -1,6 +1,6 @@
 import requests
 
-from setUserDb import *
+from db import *
 
 import json
 import demjson
@@ -116,10 +116,9 @@ def getTimetable(username, password, url):
     #password =   getpass('Now enter your password: ')
 
     #print("Retrieving timetable")
-    if skipTimetable(username) == True:
-        if userCol(username, password) == True:
-            print("[debug] REACHED HERE - 4")
-            return True
+    if skipTimetable(username) == True and validate_User(username,password) == True:
+        print("[debug] REACHED HERE - 4")
+        return True
 
     auth = HttpNtlmAuth('\\' + username, password)
     timetable = requests.get("https://webapp.coventry.ac.uk/Timetable-main/Timetable/Current/", auth=auth)
@@ -127,7 +126,7 @@ def getTimetable(username, password, url):
     if timetable.status_code == 200:
         print("[DEBUG] REACHED HERE - 3")
         format(timetable)
-        if userCol(username, password) == True:
+        if new_User(username, password) == True:
             print("[debug] REACHED HERE - 4")
             return True
 

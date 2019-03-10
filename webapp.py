@@ -41,7 +41,7 @@ def home():
 def login():
     '''Login page for website'''
     form = LoginForm() #Creates login form object
-    """if 'username' in session: #Checks if the user is logged in and if they are then they get redirected
+    if 'username' in session: #Checks if the user is logged in and if they are then they get redirected
                               #to the home page.
         return redirect(url_for('home'))
     
@@ -62,7 +62,7 @@ def login():
                                             #breaks when I use anything but username
         else:
             print("[DEBUG] FAILED")
-            flash('Invalid Login Details!')"""
+            flash('Invalid Login Details!')
     return render_template('login.html',title='Login',form=form)
 
 
@@ -123,7 +123,7 @@ def navigation():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
     
     
 
