@@ -8,9 +8,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-      
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      
+
     {% block style %}{% endblock style %}
     <style>
         @media screen and (max-width: 365px) and (min-width: 0px){
@@ -22,28 +22,28 @@
   </head>
   <body style="height: 100%; width:100%">
     <header>
-      
+
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
           <a href="#" class="navbar-brand"> Virtual Campus</a>
-          
-          
+
+
           <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarmenu">
               <span class="navbar-toggler-icon"></span>
           </button>
-          
+
           <div class="collapse navbar-collapse" id="navbarmenu">
-          
+
               <ul class="navbar-nav ml-auto">
-                  
-                  
+
+
                   <li class="navbar-item">
-                      <a href="logout" class="nav-link">Logout</a>
+                      <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
                   </li>
-                  
+
                   <li class="navbar-item">
                       <a href="#" class="nav-link">Account</a>
                   </li>
-                  
+
                   <li class="navbar-item">
                     <div class="input-group">
                       {{ search.searchbar }}<!--<input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">-->
@@ -55,9 +55,9 @@
               </ul>
           </div>
       </nav>
-        
-   
-        
+
+
+
     <div>
       <div class='container-fluid'>
           <div class="row">
@@ -68,7 +68,7 @@
             <!-- SIDE BAR -->
             <div class="col-lg-5" style="overflow-y: scroll; max-height:92vh;">
                 <nav class="navbar navbar-expand navbar-light bg-light">
-                    <a href="#" class="navbar-brand"> 
+                    <a href="#" class="navbar-brand">
                         <div id="profile-icon">
                             {% if session['username']['Username'] == 'admin' %}
                                 <img src='https://cdn4.iconfinder.com/data/icons/user-icons-5/100/user-28-512.png' height="80px" width="80px" style="border-radius: 50%; background-colour: blue;">
@@ -89,7 +89,7 @@
                         </li>
 
                         <li class="navbar-item">
-                            <a href="social" class="nav-link material-icons icons" title="Social" style="font-size: 40px;">message</a>
+                            <a href="{{url_for('social')}}" class="nav-link material-icons icons" title="Social" style="font-size: 40px;">message</a>
                         </li>
 
                         <li class="navbar-item">
@@ -97,13 +97,13 @@
                         </li>
 
                         <li class="navbar-item">
-                            <a href="navigation" class="nav-link material-icons icons" title="Navigation" style="font-size: 40px">navigation</a>
+                            <a href="#" class="nav-link material-icons icons" title="Navigation" style="font-size: 40px">navigation</a>
                         </li>
 
                     </ul>
                 </nav>
                 <nav class="navbar navbar-expand navbar-light bg-light">
-                    
+
                     {% if session['username']['Username'] == 'admin' %}
                         <h3>ADMIN</h3>
                         <ul class="navbar-nav ml-auto" style="margin-bottom: 10px; margin-right: 10px;">
@@ -119,16 +119,16 @@
                             <li class="navbar-item">
                                 <a href="#" class="nav-link material-icons icons" title="Broadcast" style="font-size: 40px">announcement</a>
                             </li>
-                        </ul>                           
+                        </ul>
                     {% else %}
-                        <h3 id="welcome">Welcome Back {{ session['username']['Firstname'] }}!</h3>
+                        <h3 id="welcome">Welcome Back {{ session['username'] }}!</h3>
                     {% endif %}
-                                           
+
                 </nav>
-                
+
                 {% block sidebar %}{% endblock sidebar %}
             </div>
-              
+
           </div>
       </div>
     </div>
@@ -137,11 +137,11 @@
     <script>
         if(window.innerWidth <= 400){
             document.getElementById("profile-icon").outerHTML = "";
-        }  
-    </script>   
-        
+        }
+    </script>
+
 {% block bottombody %}{% endblock bottombody %}
-        
+
   <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
