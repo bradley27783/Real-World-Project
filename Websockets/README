@@ -1,4 +1,0 @@
-You will need the following packages for the system to work:
-- Socketio - Cmd: pip install "python-socketio[client]"
-- Aiohttp - Cmd: pip install aiohttp
-- Aiohttp-index - Cmd: pip install aiohttp-index
