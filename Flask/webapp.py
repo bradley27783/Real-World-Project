@@ -135,10 +135,12 @@ def submit(search):
         return result
     else:
         print("No number is in result -> a building " + result)
-        words = ["Alan Berry","Alma","Armstrong","Bugatti","Charles Ward","Engineering & Computing Building","Ellen Terry","George Eliot","Graham Sutherland","Frederick Lanchester Library","Jaguar","The Hub","Maurice Foss","James Starley","Multi-Storey Car Park","Priory Building","Richard Crossman","Alison Gingell Building","Sir John Laing","Sir William Lyons","Student Centre","Whitefriars","William Morris","Sport Centre"]
+        words = ["Alan Berry","Alma","Armstrong","Bugatti","Charles Ward","Engineering & Computing Building","ECG","ecg","Ellen Terry","George Eliot","Graham Sutherland","Frederick Lanchester Library","Jaguar","The Hub","Maurice Foss","James Starley","Multi-Storey Car Park","Priory Building","Richard Crossman","Alison Gingell Building","Sir John Laing","Sir William Lyons","Student Centre","Whitefriars","William Morris","Sport Centre"]
         results = difflib.get_close_matches(result, words)
         if(results!=[]):
             correctedResult = results[0]
+            if(correctedResult == "ECG" or correctedResult =="ecg"):
+                correctedResult = "Engineering & Computing Building"
             if(results!=correctedResult):
                 print("Did you mean: ")
             return correctedResult
