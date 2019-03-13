@@ -1,0 +1,67 @@
+#right-panels {
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+#right-panel select, #right-panel input {
+  font-size: 15px;
+}
+
+#right-panel select {
+  width: 100%;
+}
+
+#right-panel i {
+  font-size: 12px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Set the size of the div element that contains the map */
+
+#map {
+  /* The height is 400 pixels */
+  height: 300px;
+
+  /* The width is the width of the web page */
+  width: 750px;
+
+  /* The background colour of the map */
+  background-color: blue;
+
+  /* Border of the Map */
+      border-style: solid;
+      border-width: medium;
+      border-color: blue;
+
+  /* Padding of the map layout */
+      padding: 25px 25px 25px 25px;
+
+    /* The margin properties of the map */
+    margin: 0;
+}
+
+
+#right-panel {
+  margin: 20px;
+  border-width: 2px;
+  width: 20%;
+  height: 400px;
+  float: left;
+  text-align: left;
+  padding-top: 0;
+}
+
+#directions-panel {
+  margin-top: 10px;
+  background-color: blue;
+  padding: 10px;
+  overflow: scroll;
+  height: 174px;
+}

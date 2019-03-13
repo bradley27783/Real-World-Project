@@ -1,0 +1,72 @@
+<h3>Coventry Google Map Demo</h3>
+<!--The div element for the map -->
+<div id="map"></div>
+<div id="map" style="float:left;width:70%; height:100%"></div> <!-- Changes the sizing of the map (May not be needed.) -->
+<div id="directionsPanel" style="float:right;width:30%;height 100%"></div>
+<div>
+<strong>Mode of Travel: </strong>
+<select id="mode" onchange="calcRoute();">
+  <option value="WALKING">Walking</option>
+  <option value="BICYCLING">Bicycling</option>
+</select>
+</div>
+<div>
+<strong>Start: </strong>
+<select id="start" onchange="calcRoute();">
+  <option value="your location">Your location</option>
+  <option value="alan berry building, coventry university">Alan Berry Building</option>
+  <option value="alma building, coventry university">Alma Building</option>
+  <option value="armstrong siddeley building, coventry university">Armstrong Siddeley Building</option>
+  <option value="bugatti building, coventry university">Bugatti Building</option>
+  <option value="charles ward building, coventry university">Charles Ward Building</option>
+  <option value="engineering & computing building, coventry university">Engineering And Computing Building</option>
+  <option value="ellen terry building, coventry university">Ellen Terry Building</option>
+  <option value="george eliot building, coventry university">George Eliot Building</option>
+  <option value="graham sutherland building, coventry university">Graham Sutherland Building</option>
+  <option value="frederick lanchester library building, coventry university">Frederick Lanchester Library Building</option>
+  <option value="jaguar building, coventry university">Jaguar Building</option>
+  <option value="thehub building, coventry university">TheHub Building</option>
+  <option value="maurice foss building, coventry university">Maurice Foss Building</option>
+  <option value="james starley building, coventry university">James Starley Building</option>
+  <option value="multi-storey car park building, coventry university">Multi-Storey Car Park Building</option>
+  <option value="priory building, coventry university">Priory Building</option>
+  <option value="richard crossman building, coventry university">Richard Crossman Building</option>
+  <option value="alison gingell building, coventry university">Alison Gingell Building</option>
+  <option value="sir john laing building, coventry university">Sir John Laing Building</option>
+  <option value="sir william lyons building, coventry university">Sir William Lyons Building</option>
+  <option value="student centre building, coventry university">Student Centre Building</option>
+  <option value="whitefriars building, coventry university">Whitefriars Building</option>
+  <option value="sports centre building, coventry university">Sports Centre Building</option>  
+</select>
+<strong>End: </strong>
+<select id="end" onchange="calcRoute();">
+ <option value="alan berry building">Alan Berry Building</option>
+  <option value="alma building">Alma Building</option>
+  <option value="armstrong siddeley building">Armstrong Siddeley Building</option>
+  <option value="bugatti building">Bugatti Building</option>
+  <option value="charles ward building">Charles Ward Building</option>
+  <option value="engineering & computing building">Engineering And Computing Building</option>
+  <option value="ellen terry building">Ellen Terry Building</option>
+  <option value="george eliot building">George Eliot Building</option>
+  <option value="graham sutherland building">Graham Sutherland Building</option>
+  <option value="frederick lanchester library building">Frederick Lanchester Library Building</option>
+  <option value="jaguar building">Jaguar Building</option>
+  <option value="thehub building">TheHub Building</option>
+  <option value="maurice foss building">Maurice Foss Building</option>
+  <option value="james starley building">James Starley Building</option>
+  <option value="multi-storey car park building">Multi-Storey Car Park Building</option>
+  <option value="priory building">Priory Building</option>
+  <option value="richard crossman building">Richard Crossman Building</option>
+  <option value="alison gingell building">Alison Gingell Building</option>
+  <option value="sir john laing building">Sir John Laing Building</option>
+  <option value="sir william lyons building">Sir William Lyons Building</option>
+  <option value="student centre building">Student Centre Building</option>
+  <option value="whitefriars building">Whitefriars Building</option>
+  <option value="sports centre building">Sports Centre Building</option>
+</select>
+</div>
+<!-- Replace the value of the key parameter with your own API key. -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap">
+
+
+</script>

@@ -1,0 +1,23 @@
+/* Set the size of the div element that contains the map */
+
+#map {
+  /* The height is 400 pixels */
+  height: 300px;
+
+  /* The width is the width of the web page */
+  width: 750px;
+
+  /* The background colour of the map */
+  background-color: blue;
+
+  /* Border of the Map */
+      border-style: solid;
+      border-width: medium;
+      border-color: blue;
+
+  /* Padding of the map layout */
+      padding: 25px 25px 25px 25px;
+    
+    /* The margin properties of the map */
+    margin: 0;
+}

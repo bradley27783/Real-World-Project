@@ -1,0 +1,105 @@
+<h3>Coventry Google Map 3.0</h3>
+<!--The div element for the map -->
+<div id="map"></div>
+<div id="right-panel">
+<div id="directionsPanel" style="float:right;width:30%;height 100%"></div>
+<div>
+<strong>Mode of Travel: </strong>
+<select id="mode" onchange="calcRoute();">
+  <option value="WALKING">Walking</option>
+  <option value="BICYCLING">Bicycling</option>
+</select>
+</div>
+<div>
+<strong>Start: </strong>
+<select id="start" onchange="calcRoute();">
+  <option value="Your Location">Your location</option>
+  <option value="Alan Berry Building, Coventry University, Priory Street, Coventry">Alan Berry Building</option>
+  <option value="Alma Building, Coventry University, Alma Street, Coventry">Alma Building</option>
+  <option value="Armstrong Siddeley building">Armstrong Siddeley Building</option>
+  <option value="Bugatti Building, Coventry">Bugatti Building</option>
+  <option value="Charles Ward Building, Coventry University, Coventry University, Cope Street, Coventry">Charles Ward Building</option>
+  <option value="Engineering & Computing Building, Coventry University, Gulson Road, Coventry">Engineering And Computing Building</option>
+  <option value="Ellen Terry Building, Jordan Well, Coventry">Ellen Terry Building</option>
+  <option value="George Eliot Building, Coventry University, Priory Street, Coventry">George Eliot Building</option>
+  <option value="Graham Sutherland Building, Coventry University, Cox Street, Coventry">Graham Sutherland Building</option>
+  <option value="Lanchester Library, Frederick Lanchester Building, Coventry University, Gosford Street, Coventry">Frederick Lanchester Library Building</option>
+  <option value="Jaguar Building, Coventry">Jaguar Building</option>
+  <option value="TheHub, Coventry University, Priory Street, Coventry">TheHub Building</option>
+  <option value="Maurice Foss Building, Coventry">Maurice Foss Building</option>
+  <option value="James Starley Building, Coventry University, Cox Street, Coventry">James Starley Building</option>
+  <option value="Staff Car Park, Coventry University, Gosford Street, Coventry, Coventry University">Multi-Storey Car Park Building</option>
+  <option value="Priory Building, Coventry University, Coventry">Priory Building</option>
+  <option value="Richard Crossman Building, Coventry University, Jordan Well, Coventry">Richard Crossman Building</option>
+  <option value="Alison Gingell building, Coventry">Alison Gingell Building</option>
+  <option value="Sir John Laing Building, Coventry University, Much Park Street, Coventry">Sir John Laing Building</option>
+  <option value="Sir William Lyons Building, Coventry University, Gosford Street, Coventry">Sir William Lyons Building</option>
+  <option value="Student Centre Building, Coventry University, Gulson Road, Coventry">Student Centre Building</option>
+  <option value="Whitefriars Building, Coventry University, Whitefriars Street, Coventry">Whitefriars Building</option>
+  <option value="Sport and Recreation Centre, Coventry University, Whitefriars Lane, Coventry">Sports Centre Building 1</option>  
+</select>
+<br>
+<b>Waypoints:</b> <br>
+<i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br>
+<select multiple id="waypoints">
+  <option value="Your Location">Your location</option>
+  <option value="Alan Berry Building, Coventry University, Priory Street, Coventry">Alan Berry Building</option>
+  <option value="Alma Building, Coventry University, Alma Street, Coventry">Alma Building</option>
+  <option value="Armstrong Siddeley building">Armstrong Siddeley Building</option>
+  <option value="Bugatti Building, Coventry">Bugatti Building</option>
+  <option value="Charles Ward Building, Coventry University, Coventry University, Cope Street, Coventry">Charles Ward Building</option>
+  <option value="Engineering & Computing Building, Coventry University, Gulson Road, Coventry">Engineering And Computing Building</option>
+  <option value="Ellen Terry Building, Jordan Well, Coventry">Ellen Terry Building</option>
+  <option value="George Eliot Building, Coventry University, Priory Street, Coventry">George Eliot Building</option>
+  <option value="Graham Sutherland Building, Coventry University, Cox Street, Coventry">Graham Sutherland Building</option>
+  <option value="Lanchester Library, Frederick Lanchester Building, Coventry University, Gosford Street, Coventry">Frederick Lanchester Library Building</option>
+  <option value="Jaguar Building, Coventry">Jaguar Building</option>
+  <option value="TheHub, Coventry University, Priory Street, Coventry">TheHub Building</option>
+  <option value="Maurice Foss Building, Coventry">Maurice Foss Building</option>
+  <option value="James Starley Building, Coventry University, Cox Street, Coventry">James Starley Building</option>
+  <option value="Staff Car Park, Coventry University, Gosford Street, Coventry, Coventry University">Multi-Storey Car Park Building</option>
+  <option value="Priory Building, Coventry University, Coventry">Priory Building</option>
+  <option value="Richard Crossman Building, Coventry University, Jordan Well, Coventry">Richard Crossman Building</option>
+  <option value="Alison Gingell building, Coventry">Alison Gingell Building</option>
+  <option value="Sir John Laing Building, Coventry University, Much Park Street, Coventry">Sir John Laing Building</option>
+  <option value="Sir William Lyons Building, Coventry University, Gosford Street, Coventry">Sir William Lyons Building</option>
+  <option value="Student Centre Building, Coventry University, Gulson Road, Coventry">Student Centre Building</option>
+  <option value="Whitefriars Building, Coventry University, Whitefriars Street, Coventry">Whitefriars Building</option>
+  <option value="Sport and Recreation Centre, Coventry University, Whitefriars Lane, Coventry">Sports Centre Building 1</option> 
+  </select>
+<br>
+<strong>End: </strong>
+<select id="end" onchange="calcRoute();">
+  <option value="Your Location">Your location</option>
+  <option value="Alan Berry Building, Coventry University, Priory Street, Coventry">Alan Berry Building</option>
+  <option value="Alma Building, Coventry University, Alma Street, Coventry">Alma Building</option>
+  <option value="Armstrong Siddeley building">Armstrong Siddeley Building</option>
+  <option value="Bugatti Building, Coventry">Bugatti Building</option>
+  <option value="Charles Ward Building, Coventry University, Coventry University, Cope Street, Coventry">Charles Ward Building</option>
+  <option value="Engineering & Computing Building, Coventry University, Gulson Road, Coventry">Engineering And Computing Building</option>
+  <option value="Ellen Terry Building, Jordan Well, Coventry">Ellen Terry Building</option>
+  <option value="George Eliot Building, Coventry University, Priory Street, Coventry">George Eliot Building</option>
+  <option value="Graham Sutherland Building, Coventry University, Cox Street, Coventry">Graham Sutherland Building</option>
+  <option value="Lanchester Library, Frederick Lanchester Building, Coventry University, Gosford Street, Coventry">Frederick Lanchester Library Building</option>
+  <option value="Jaguar Building, Coventry">Jaguar Building</option>
+  <option value="TheHub, Coventry University, Priory Street, Coventry">TheHub Building</option>
+  <option value="Maurice Foss Building, Coventry">Maurice Foss Building</option>
+  <option value="James Starley Building, Coventry University, Cox Street, Coventry">James Starley Building</option>
+  <option value="Staff Car Park, Coventry University, Gosford Street, Coventry, Coventry University">Multi-Storey Car Park Building</option>
+  <option value="Priory Building, Coventry University, Coventry">Priory Building</option>
+  <option value="Richard Crossman Building, Coventry University, Jordan Well, Coventry">Richard Crossman Building</option>
+  <option value="Alison Gingell building, Coventry">Alison Gingell Building</option>
+  <option value="Sir John Laing Building, Coventry University, Much Park Street, Coventry">Sir John Laing Building</option>
+  <option value="Sir William Lyons Building, Coventry University, Gosford Street, Coventry">Sir William Lyons Building</option>
+  <option value="Student Centre Building, Coventry University, Gulson Road, Coventry">Student Centre Building</option>
+  <option value="Whitefriars Building, Coventry University, Whitefriars Street, Coventry">Whitefriars Building</option>
+  <option value="Sport and Recreation Centre, Coventry University, Whitefriars Lane, Coventry">Sports Centre Building 1</option> 
+</select>
+<br>
+  <input type="submit" id="submit">
+</div>
+<div id="directions-panel"></div>
+</div>
+<!-- Replace the value of the key parameter with your own API key. -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap">
+</script>
