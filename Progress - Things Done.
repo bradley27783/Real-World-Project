@@ -9,4 +9,21 @@
     https://www.coventry.ac.uk/the-university/about-coventry-university/our-buildings/buildings/
 - Research on Javascript, HTML, CSS (Ongoing).
     https://www.w3schools.com/js/
-- ...
+- Made it possible to generate directions from 23 university buildings
+    - Refined the location of each building to ensure students are directed to the entrance or close to it.
+- Created two modes of transport to gather directions and times from.
+- Created personal markers for each type of building.
+    - Library, Info Point & Car Park.
+- Created waypoints to allow students to simultaenously gather multiple directions from more than two buildings.
+- Adjusted the center of the map to allow all markers to be visible to the user at once.
+- Integrated the geolocation API with the directions API and the present custom layout of the map interface.
+- Made it possible to locate your own location.
+    - Changed the error and location found messages to make the question as to "why or what" less possible.
+- Changed the error for directions not being found more clear.
+- Created a drop down box for all the possible locations to generate directions from as well as the mode of transport.
+- Created a blue background for the map.
+- Created a lightblue background for the directions panel (may change).
+- Adjusted the size of the map.
+- Added padding.
+- Added margins.
+- ...and more
