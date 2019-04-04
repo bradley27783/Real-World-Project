@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{event|title}} - {{day|title}}</title>
+<style>
+th, td {
+  border-bottom: 1px solid #ddd;
+}
+    td {
+        vertical-align: centre;
+        text-align: centre;
+    }
+</style>
+    
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+	<div>
+        
+     <h1>{{ day|title }}</h1>
+
+        <table>
+		    <tr>
+			    <td></td>
+		    </tr>
+            
+            {% set skip = {"flag":0} %}
+            {% for hour in displayTimes %}
+                <tr>
+                    <th>{{hour}}</th>
+                    {% set foundLesson = {"flag": False} %}
+                    
+                    {% for lesson in timetable[day|title] %}
+                        {% if lesson[0] == times[hour] and lesson[7] == 2 %}
+                            <td rowspan="2">{{lesson}}</td>
+                            {% if foundLesson.update({'flag':True}) %}{% endif %} <!-- Setting flag to true because we have found a lesson and so we dont print nothing -->
+                            {% if skip.update({'flag':2}) %}{% endif %} <!-- Setting flag to two because its a two hour lesson -->
+                    
+                        {% elif lesson[0] == times[hour] and lesson[7] == 1 %}
+                            <td rowspan="1">{{lesson}}</td>
+                            {% if foundLesson.update({'flag':True}) %}{% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if foundLesson.flag == False and skip.flag == 0 %}
+                        <td>None</td>
+                    {% endif %}
+                </tr>
+                {% if skip.flag != 0 %}
+                    {% if skip.update({'flag':skip.flag-1}) %}{% endif %}
+                {% endif %}
+            {% endfor %}
+
+		</table>
+	</div>
+</body>
+</html>
