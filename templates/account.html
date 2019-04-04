@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+
+{% block main %}
+    <form method='POST' action=''>
+        {{ delete.hidden_tag() }}
+        <fieldset>
+        <legend>Delete Account</legend>
+            <div class="form-group">
+                {{ delete.password.label(class="form-control-label") }}
+                {{ delete.password(class="form-control") }}
+            </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        </fieldset>
+        <div class="form-group">
+            {{ delete.submit(class="btn btn-danger btn-block btn-lg") }}
+        </div>
+
+        </form>
+{% endblock main %}
+
+
+
+{% block sidebar %}
+
+
+
+{% endblock sidebar %}
