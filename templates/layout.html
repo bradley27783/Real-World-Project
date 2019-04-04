@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Virtual Campus</title>
+    <title>CU Connected</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -24,7 +24,7 @@
     <header>
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-          <a href="#" class="navbar-brand"> Virtual Campus</a>
+          <a href="{{ url_for('home') }}" class="navbar-brand"> CU Connected</a>
 
 
           <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarmenu">
@@ -35,13 +35,12 @@
 
               <ul class="navbar-nav ml-auto">
 
-
                   <li class="navbar-item">
                       <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
                   </li>
 
                   <li class="navbar-item">
-                      <a href="#" class="nav-link">Account</a>
+                      <a href="{{ url_for('account') }}" class="nav-link">Account</a>
                   </li>
 
                   <li class="navbar-item">
@@ -70,7 +69,7 @@
                 <nav class="navbar navbar-expand navbar-light bg-light">
                     <a href="#" class="navbar-brand">
                         <div id="profile-icon">
-                            {% if session['username']['Username'] == 'admin' %}
+                            {% if session['username'] == 'admin' %}
                                 <img src='https://cdn4.iconfinder.com/data/icons/user-icons-5/100/user-28-512.png' height="80px" width="80px" style="border-radius: 50%; background-colour: blue;">
                             {% else %}
                                 <img src='https://thumbs.dreamstime.com/z/businessman-profile-icon-male-portrait-flat-design-vector-illustration-47075259.jpg' height="80px" width="80px" style="border-radius: 50%; background-colour: blue;">
@@ -89,7 +88,7 @@
                         </li>
 
                         <li class="navbar-item">
-                            <a href="{{url_for('social')}}" class="nav-link material-icons icons" title="Social" style="font-size: 40px;">message</a>
+                            <a href="{{ url_for('social') }}" class="nav-link material-icons icons" title="Social" style="font-size: 40px;">message</a>
                         </li>
 
                         <li class="navbar-item">
@@ -97,14 +96,14 @@
                         </li>
 
                         <li class="navbar-item">
-                            <a href="#" class="nav-link material-icons icons" title="Navigation" style="font-size: 40px">navigation</a>
+                            <a href="{{ url_for('navigation') }}" class="nav-link material-icons icons" title="Navigation" style="font-size: 40px">navigation</a>
                         </li>
 
                     </ul>
                 </nav>
                 <nav class="navbar navbar-expand navbar-light bg-light">
 
-                    {% if session['username']['Username'] == 'admin' %}
+                    {% if session['username'] == 'admin' %}
                         <h3>ADMIN</h3>
                         <ul class="navbar-nav ml-auto" style="margin-bottom: 10px; margin-right: 10px;">
                             <li class="navbar-item">
@@ -121,7 +120,7 @@
                             </li>
                         </ul>
                     {% else %}
-                        <h3 id="welcome">Welcome Back {{ session['username'] }}!</h3>
+                        <h3 id="welcome">Welcome Back {{ session['name'] }}!</h3>
                     {% endif %}
 
                 </nav>
