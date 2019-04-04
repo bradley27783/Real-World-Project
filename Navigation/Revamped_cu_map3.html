@@ -1,0 +1,106 @@
+<h3>Coventry Google Map 4.0</h3>
+<!--The div element for the map -->
+<div id="map"></div>
+<div id="right-panel">
+<div id="directionsPanel" style="float:right;width:30%;height 100%"></div>
+<div>
+<strong>Mode of Travel: </strong>
+<select id="mode" onchange="calcRoute();">
+  <option value="WALKING">Walking</option>
+  <option value="BICYCLING">Bicycling</option>
+</select>
+</div>
+<div>
+<strong>Start: </strong>
+<select id="start" onchange="calcRoute();">
+  <option value="Your Location">Your location</option>
+  <option value="52.408070, -1.506023">Alan Berry Building</option>
+  <option value="52.4100173, -1.5026316">Alma Building</option>
+  <option value="52.4075382, -1.5033031">Armstrong Siddeley Building</option> (?)
+  <option value="52.407482, -1.502899">Bugatti Building</option>
+  <option value="52.408580, -1.504723">Charles Ward Building</option>
+  <option value="52.4052898, -1.501848">Engineering And Computing Building</option>
+  <option value="52.4066632, -1.506845">Ellen Terry Building</option>
+  <option value="52.408127,  -1.505058">George Eliot Building</option>
+  <option value="52.406976, -1.503427">Graham Sutherland Building</option>
+  <option value="52.405766, -1.500751">Frederick Lanchester Library Building</option>
+  <option value="52.406878, -1.500965">Jaguar Building</option>
+  <option value="52.4074963, -1.5069194">TheHub Building</option>
+  <option value="52.4078156, -1.5053153">Maurice Foss Building</option>
+  <option value="52.4077121, -1.5062505">James Starley Building</option>
+  <option value="52.4060105, -1.5016446">Multi-Storey Car Park Building</option>
+  <option value="52.409127, -1.506061">Priory Building</option>
+  <option value="52.406743, -1.505417">Richard Crossman Building</option>
+  <option value="52.4054596, -1.5061344">Alison Gingell Building</option>
+  <option value="52.4058614, -1.5071858">Sir John Laing Building</option>
+  <option value="52.407411, -1.499745">Sir William Lyons Building</option>
+  <option value="52.404934, -1.500546">Student Centre Building</option>
+  <option value="52.406156, -1.504071">Whitefriars Building</option>
+  <option value="52.405602, -1.503907">Sports Centre Building 1</option>  
+</select>
+<br>
+<b>Waypoints:</b> <br>
+<i>(Ctrl+Click or Cmd+Click to select multiple points)</i> <br>
+<select multiple id="waypoints">
+  <option value="Your Location">Your location</option>
+  <option value="52.408070, -1.506023">Alan Berry Building</option>
+  <option value="52.4100173, -1.5026316">Alma Building</option>
+  <option value="52.4075382, -1.5033031">Armstrong Siddeley Building</option> (?)
+  <option value="52.407482, -1.502899">Bugatti Building</option>
+  <option value="52.408580, -1.504723">Charles Ward Building</option>
+  <option value="52.4052898, -1.501848">Engineering And Computing Building</option>
+  <option value="52.4066632, -1.506845">Ellen Terry Building</option>
+  <option value="52.408127,  -1.505058">George Eliot Building</option>
+  <option value="52.406976, -1.503427">Graham Sutherland Building</option>
+  <option value="52.405766, -1.500751">Frederick Lanchester Library Building</option>
+  <option value="52.406878, -1.500965">Jaguar Building</option>
+  <option value="52.4074963, -1.5069194">TheHub Building</option>
+  <option value="52.4078156, -1.5053153">Maurice Foss Building</option>
+  <option value="52.4077121, -1.5062505">James Starley Building</option>
+  <option value="52.4060105, -1.5016446">Multi-Storey Car Park Building</option>
+  <option value="52.409127, -1.506061">Priory Building</option>
+  <option value="52.406743, -1.505417">Richard Crossman Building</option>
+  <option value="52.4054596, -1.5061344">Alison Gingell Building</option>
+  <option value="52.4058614, -1.5071858">Sir John Laing Building</option>
+  <option value="52.407411, -1.499745">Sir William Lyons Building</option>
+  <option value="52.404934, -1.500546">Student Centre Building</option>
+  <option value="52.406156, -1.504071">Whitefriars Building</option>
+  <option value="52.405602, -1.503907">Sports Centre Building 1</option>
+  </select>
+<br>
+<strong>End: </strong>
+<select id="end" onchange="calcRoute();">
+  <option value="Your Location">Your location</option>
+  <option value="52.408070, -1.506023">Alan Berry Building</option>
+  <option value="52.4100173, -1.5026316">Alma Building</option>
+  <option value="52.4075382, -1.5033031">Armstrong Siddeley Building</option> (?)
+  <option value="52.407482, -1.502899">Bugatti Building</option>
+  <option value="52.408580, -1.504723">Charles Ward Building</option>
+  <option value="52.4052898, -1.501848">Engineering And Computing Building</option>
+  <option value="52.4066632, -1.506845">Ellen Terry Building</option>
+  <option value="52.408127,  -1.505058">George Eliot Building</option>
+  <option value="52.406976, -1.503427">Graham Sutherland Building</option>
+  <option value="52.405766, -1.500751">Frederick Lanchester Library Building</option>
+  <option value="52.406878, -1.500965">Jaguar Building</option>
+  <option value="52.4074963, -1.5069194">TheHub Building</option>
+  <option value="52.4078156, -1.5053153">Maurice Foss Building</option>
+  <option value="52.4077121, -1.5062505">James Starley Building</option>
+  <option value="52.4060105, -1.5016446">Multi-Storey Car Park Building</option>
+  <option value="52.409127, -1.506061">Priory Building</option>
+  <option value="52.406743, -1.505417">Richard Crossman Building</option>
+  <option value="52.4054596, -1.5061344">Alison Gingell Building</option>
+  <option value="52.4058614, -1.5071858">Sir John Laing Building</option>
+  <option value="52.407411, -1.499745">Sir William Lyons Building</option>
+  <option value="52.404934, -1.500546">Student Centre Building</option>
+  <option value="52.406156, -1.504071">Whitefriars Building</option>
+  <option value="52.405602, -1.503907">Sports Centre Building 1</option>
+</select>
+<br>
+  <input type="submit" id="submit">
+</div>
+<strong>Directions: </strong>
+<div id="directions-panel"></div>
+</div>
+<!-- Replace the value of the key parameter with your own API key. -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap">
+</script>
