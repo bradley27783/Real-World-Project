@@ -1,0 +1,35 @@
+{% extends "accesslayout.html" %}
+
+{% block main %}
+<div class="container">
+    <div class="center-block" style="background-color:rgba(255,255,255,.7); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 30px 60px; border-radius: 25px; box-shadow: 2px 2px 2px;">
+        <div>
+            <img src="https://www.coventry.ac.uk/globalassets/media/global/04-business-section-assets/business-landing-page/logos/coventry-university-logo-landscape.png">
+        </div>
+    <div class="">
+        <form method='POST' action=''>
+        {{ account.hidden_tag() }}
+        <fieldset>
+        <legend>Setup Account</legend>
+            <div class="form-group">
+                {{ account.fname.label(class="form-control-label") }}
+                {{ account.fname(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ account.lname.label(class="form-control-label") }}
+                {{ account.lname(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ account.course.label(class="form-control-label") }}
+                {{ account.course(class="form-control") }}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ account.submit(class="btn btn-outline-success btn-block btn-lg") }}
+        </div>
+        </form>
+
+    </div>
+    </div>
+</div>
+{% endblock main %}
