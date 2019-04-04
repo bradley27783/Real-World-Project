@@ -1,0 +1,44 @@
+#map {
+  /* The height is 400 pixels */
+  height: 300px;
+
+  /* The width is the width of the web page */
+  width: 750px;
+
+  /* The background colour of the map */
+  background-color: blue;
+
+  /* Border of the Map */
+      border-style: solid;
+      border-width: medium;
+      border-color: lightblue;
+
+  /* Padding of the map layout */
+      padding: 25px 25px 25px 25px;
+
+    /* The margin properties of the map */
+    margin: 0;
+}
+
+
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: lightblue;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+#directions-panel {
+  margin-top: 10px;
+  background-color: lightblue;
+  padding: 10px;
+  overflow: scroll;
+  height: 174px;
+}
