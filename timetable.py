@@ -1,7 +1,4 @@
 import requests
-
-from db import *
-
 import json
 import demjson
 import datetime
@@ -19,23 +16,23 @@ def formatDate(oldDate):
     newDate = newDate.replace("(","[")
     newDate = newDate.replace(")","]")
     return newDate
-    
-def format(timetable):
+
+def format(timetable,user):
     # query website and return the html
     counter = 0
     eventCounter = 0
     numOfLines = 0
     startReading = False
     html = BeautifulSoup(timetable.content, 'html.parser')
-    f = open("html.txt", "w")
+    f = open(user+".txt", "w")
     f.write(str(html))
     f.close()
-    f = open("html.txt", "r")
+    f = open(user+".txt", "r")
     lines = f.readlines()
     f.close()
     blaclist = ['ourEventId:', 'color:', 'mainColor', 'eventType:', 'sourceid:']
     blacklistCounter = 0
-    f = open("html.txt", "w")
+    f = open(user+".txt", "w")
     #something to make it a dic opening here
     f.write("{")
 
@@ -44,7 +41,7 @@ def format(timetable):
             if ": new Date(" in l: #formats the date entry to be able to convert into python
                 l = formatDate(l)
                 f.write(l)
-                continue       
+                continue
             if "{}" in l:
                 break
             if "{" in l:
@@ -65,7 +62,7 @@ def format(timetable):
     f.close()
 
     #print("Loading...")
-    jsFile = open("html.txt", "r")
+    jsFile = open(user+".txt", "r")
     jsObj = jsFile.read()
     jsFile.close()
     timetableDict = demjson.decode(jsObj)
@@ -74,16 +71,18 @@ def format(timetable):
     monthView = formatMonth(eventCounter, timetableDict)
 
 
-    f = open("html.txt", "w")
+    f = open(user+".txt", "w")
     f.write(str(monthView))
     f.close()
+
+    return True
 
 
 
 def formatMonth(eventCounter, timetableDict):
     currentDate = datetime.date.today()
 
-    
+
     for event in range(eventCounter):
         instance = "event" + str(event)
         if currentDate.month != 11 : #if not half way through december
@@ -106,28 +105,21 @@ def formatMonth(eventCounter, timetableDict):
 
 
     return timetableDict
-    
 
-    
+
+
 def getTimetable(username, password, url):
-    
-    print("[DEBUG] REACHED HERE - 1")
-    #user = input('Enter your University login: ')
-    #password =   getpass('Now enter your password: ')
 
-    #print("Retrieving timetable")
-    if skipTimetable(username) == True and validate_User(username,password) == True:
-        print("[debug] REACHED HERE - 4")
-        return True
+    print("[DEBUG] REACHED HERE - 1")
 
     auth = HttpNtlmAuth('\\' + username, password)
-    timetable = requests.get("https://webapp.coventry.ac.uk/Timetable-main/Timetable/Current/", auth=auth)
+    print(username)
+    print(password)
+    timetable = requests.get("https://webapp.coventry.ac.uk/Timetable-main/Timetable/Current/", auth=auth,verify=False)
 
     if timetable.status_code == 200:
         print("[DEBUG] REACHED HERE - 3")
-        format(timetable)
-        if new_User(username, password) == True:
-            print("[debug] REACHED HERE - 4")
+        if format(timetable,username):
             return True
 
         #print("Completed loading timetable!")
@@ -142,7 +134,7 @@ def getTimetable(username, password, url):
 
         #print("Error! Status code: " + timetable.status_code)
 
-# return at status code ... 
+# return at status code ...
 # if code is 200, then add to db.
 # store db so that flask can connect to it
 # make it so that users can login depending on the credentials of the db
