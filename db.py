@@ -1,32 +1,8 @@
-import sqlite3
 from passlib.hash import pbkdf2_sha256
 
-
-def create_Table():
-        conn = sqlite3.connect('vc.db')
-        c = conn.cursor()
-
-        c.execute('''CREATE TABLE users
-             (id INTEGER PRIMARY KEY, uid VARCHAR(20), pwd TEXT, fname VARCHAR(20))''')
-
-        # Insert a row of data
-        c.execute("INSERT INTO users(uid,pwd,fname) VALUES (?,?,?)",("admin",pbkdf2_sha256.hash('admin'),'Administrator'))
-        conn.commit()
-        conn.close()
-
-def display():
-        conn = sqlite3.connect('vc.db')
-        c = conn.cursor()
-        c.execute('''SELECT * FROM users''')
-        print(c.fetchall())
-        conn.close()
-
-#create_Table()
-#display()
-
 # test code
-def skipTimetable(user):
-	conn = sqlite3.connect('vc.db')
+def skipTimetable(user,db):
+	conn = sql.connect('harri361.mysql.pythonanywhere-services.com','harri361','RealWorldProject','harri361$VirtualCampus')
 	c = conn.cursor()
 	c.execute('''SELECT uid FROM users
 		WHERE uid = ?''',(user,))
@@ -38,8 +14,8 @@ def skipTimetable(user):
 
 print(skipTimetable('harri361'))
 
-def new_User(uid,pwd):
-	conn = sqlite3.connect('vc.db')
+def new_User(uid,pwd,db):
+	conn = sql.connect('harri361.mysql.pythonanywhere-services.com','harri361','RealWorldProject','harri361$VirtualCampus')
 	c = conn.cursor()
 
 	c.execute("INSERT INTO users(uid,pwd) VALUES (?,?)",(uid,pbkdf2_sha256.hash(pwd)))
@@ -47,8 +23,8 @@ def new_User(uid,pwd):
 	conn.close()
 	return True
 
-def validate_User(uid,pwd):
-	conn = sqlite3.connect('vc.db')
+def validate_User(uid,pwd,db):
+	conn = sql.connect('harri361.mysql.pythonanywhere-services.com','harri361','RealWorldProject','harri361$VirtualCampus')
 	c = conn.cursor()
 
 	c.execute("""SELECT pwd FROM users
@@ -66,5 +42,4 @@ def validate_User(uid,pwd):
 	else:
 		print("[DEBUG] INCORRECT PASSWORD")
 		return False
-
 
